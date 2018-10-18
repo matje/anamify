@@ -1,0 +1,26 @@
+aname.example.  3600 IN SOA   aname.example. root.aname.example. 199609206 3600 1200 7200 36000
+                3600 IN NS    ns.aname.example.
+                3600 IN NS    ns2.aname.
+                3600 IN MX    10 mx.aname.example.  ; Primary Mail Exchanger
+                3600 IN TXT   "Example ANAME zone"
+
+                ; ANAME pletterpet.nl.
+                3600 IN TYPE65533 \# 15 0a706c6574746572706574026e6c00
+                3600 IN A     0.0.0.0
+                3600 IN AAAA  ::0
+
+localhost       3600 IN A     127.0.0.1
+router          3600 IN A     206.6.177.1
+weird.example.  3600 IN A     206.6.177.2
+ns              3600 IN A     206.6.177.3
+www             3600 IN A     207.159.141.192
+ipv6            3600 IN AAAA  ::1
+ftp             3600 IN CNAME aname.example.
+mail            3600 IN CNAME aname.example.
+news            3600 IN CNAME aname.example.
+fun             3600 IN A     206.6.177.2
+
+                ; ANAME matthijsmekking.nl.
+aname           3600 IN TYPE65533 \# 20 0f6d61747468696a736d656b6b696e67026e6c00
+aname           3600 IN A     0.0.0.0
+aname           3600 IN AAAA  ::0

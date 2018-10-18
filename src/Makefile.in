@@ -1,0 +1,55 @@
+# Makefile
+
+# Standard installation pathnames
+SHELL = @SHELL@
+
+CC		= @CC@
+CPPFLAGS	= @CPPFLAGS@
+CFLAGS		= @CFLAGS@
+LDFLAGS		= @LDFLAGS@
+LIBS		= @LIBS@
+LIBOBJS		= @LIBOBJS@
+INSTALL		= install-sh -c
+INSTALL_PROGRAM	= $(INSTALL)
+INSTALL_DATA	= $(INSTALL) -m 644
+
+COMPILE		= $(CC) $(CPPFLAGS) $(CFLAGS)
+LINK		= $(CC) $(CFLAGS) $(LDFLAGS)
+
+TARGETS=anamify
+
+COMMON_OBJ=anamify.o
+ANAME_OBJ=$(COMMON_OBJ)
+ALL_OBJ=$(ANAME_OBJ)
+all:	$(TARGETS)
+
+$(ALL_OBJ):
+	$(COMPILE) -c $<
+
+test:
+
+anamify: $(ANAME_OBJ) $(LIBOBJS)
+	$(LINK) -o $@ $(ANAME_OBJ) $(LIBOBJS) $(LIBS)
+
+clean:
+	rm -f *.o $(TARGETS)
+
+realclean: clean
+	rm -f Makefile config.h config.log config.status
+	rm -rf autom4te*
+
+devclean: realclean
+	rm -f config.h.in configure
+
+# autoconf rules
+config.h.in:	configure.ac
+	autoheader
+
+configure:	configure.ac
+	autoconf
+
+tags:
+	ctags *.[ch]
+
+# Dependencies
+anamify.o: anamify.c
