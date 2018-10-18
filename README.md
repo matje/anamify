@@ -10,7 +10,10 @@ The specification is a work in progress: https://github.com/each/draft-aname
 2. Look for ANAME RRset, perform validation checks.
 3. For each ANAME RRset, resolve the A and AAAA RRset for the target.
 4. If resolution is successful, rename owner name of target RRsets with ANAME owner name.
-5. And replace existing sibling address RRsets with the target RRsets.
+4. Add target RRsets to the zone.
+
+This could be improved to actually replace the sibling A and AAA RRset on the
+owner name of ANAME.
 
 ## Build
 
